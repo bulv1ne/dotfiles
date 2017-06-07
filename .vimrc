@@ -39,3 +39,4 @@ set nocursorline
 
 let g:ackprg = 'ag --vimgrep'
 
+set wildignore+=*/node_modules/*,*/__pycache__/*,*.pyc,*/static_root/*,*/bower_components/*
