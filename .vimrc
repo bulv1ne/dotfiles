@@ -1,6 +1,11 @@
 set nocompatible
 execute pathogen#infect()
 set t_Co=256
+let mapleader = ","
+
+hi IndentGuidesOdd ctermbg=234
+hi IndentGuidesEven ctermbg=235
+
 filetype plugin on
 syntax on
 set number
