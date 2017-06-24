@@ -1,6 +1,6 @@
 #!/bin/sh
 
-git submodule foreach git pull origin master
+git submodule update --init --recursive
 
 ln -s `realpath .vimrc` ~/.vimrc
 ln -s `realpath .vim` ~/.vim
