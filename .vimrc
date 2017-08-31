@@ -35,7 +35,6 @@ set nowritebackup
 set noswapfile
 
 set autoread
-set clipboard+=unnamed
 set nocursorline
 "set ruler
 
