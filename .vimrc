@@ -26,6 +26,13 @@ inoremap jk <ESC>
 nnoremap Q @
 nnoremap <leader>w :w<CR>
 
+let g:EasyMotion_do_mapping = 0
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+nmap s <Plug>(easymotion-overwin-f)
+nmap <Space> <Plug>(easymotion-overwin-f2)
+
 if has('patch-8.0.1206')
   " In patch 8.0.1206 the event CmdlineEnter and CmdlineLeave was added
   augroup vimrc-incsearch-highlight
