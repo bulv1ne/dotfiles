@@ -1,3 +1,4 @@
+set encoding=utf-8
 set nocompatible
 execute pathogen#infect()
 set t_Co=256
@@ -21,7 +22,18 @@ vnoremap . :norm.<CR>
 set background=dark
 "colorscheme base16-google-dark
 set scrolloff=3
-inoremap jj <ESC>
+inoremap jk <ESC>
+nnoremap Q @
+nnoremap <leader>w :w<CR>
+
+if has('patch-8.0.1206')
+  " In patch 8.0.1206 the event CmdlineEnter and CmdlineLeave was added
+  augroup vimrc-incsearch-highlight
+    autocmd!
+    autocmd CmdlineEnter [/\?] :set hlsearch
+    autocmd CmdlineLeave [/\?] :set nohlsearch
+  augroup END
+endif
 
 set relativenumber
 autocmd InsertEnter * :set number
