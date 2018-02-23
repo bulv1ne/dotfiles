@@ -57,8 +57,7 @@ set autoread
 set nocursorline
 "set ruler
 
-:command! Isort execute ':w' | execute ':silent !isort -rc %' | execute ':edit!' | execute ':redraw!'
-:command! Flake8 execute ':w' | execute ':silent !flake8 %'
+:command! Isort execute ':w' | execute ':silent !pipenv run isort -rc %' | execute ':edit!' | execute ':redraw!'
 
 let g:ackprg = 'ag --vimgrep'
 
