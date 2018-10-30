@@ -23,8 +23,6 @@ set background=dark
 "colorscheme base16-google-dark
 set scrolloff=3
 inoremap jk <ESC>
-nnoremap Q @
-nnoremap <leader>w :w<CR>
 
 let g:EasyMotion_do_mapping = 0
 " Turn on case insensitive feature
@@ -57,8 +55,29 @@ set autoread
 set nocursorline
 "set ruler
 
-:command! Isort execute ':w' | execute ':silent !pipenv run isort -rc %' | execute ':edit!' | execute ':redraw!'
+command! Isort execute ':w' | execute ':silent !pipenv run isort -rc %' | execute ':edit!' | execute ':redraw!'
+command! Black execute ':w' | execute ':silent !black %' | execute ':silent !pipenv run isort -rc %' | execute ':edit!' | execute ':redraw!'
+nnoremap <F7> :Black<CR>
+
+command! -nargs=1 -complete=customlist,SnippetAutocomplete MyCommand execute 'r! python3 /home/ec2-user/projects/snippets/find.py' <q-args>
+function! SnippetAutocomplete (...)
+    let l:output = system('python3 /home/ec2-user/projects/snippets/list.py ' . a:1)
+    return split(l:output)
+endfunction
 
 let g:ackprg = 'ag --vimgrep'
 
 set wildignore+=*/node_modules/*,*/__pycache__/*,*.pyc,*/static_root/*,*/bower_components/*
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_python_exec = 'pipenv run python'
+
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
+
+autocmd BufNewFile,BufRead *vue set syntax=html
