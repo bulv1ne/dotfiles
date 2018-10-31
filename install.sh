@@ -2,7 +2,7 @@
 
 git submodule update --init --recursive
 
-ln -s `realpath .vimrc` ~/.vimrc
-ln -s `realpath .vim` ~/.vim
-ln -s `realpath .tmux.conf` ~/.tmux.conf
-
+[ ! -e ~/.vimrc ] && ln -s `realpath .vimrc` ~/.vimrc
+[ ! -e ~/.vim ] && ln -s `realpath .vim` ~/.vim
+[ ! -e ~/.tmux.conf ] && ln -s `realpath .tmux.conf` ~/.tmux.conf
+[ ! -e ~/.emacs ] && ln -s `realpath .emacs` ~/.emacs
