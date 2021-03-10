@@ -12,21 +12,22 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+(load-theme 'material t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (material)))
  '(custom-safe-themes
    (quote
-    ("732b807b0543855541743429c9979ebfb363e27ec91e82f463c91e68c772f6e3" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
+    ("d4f8fcc20d4b44bf5796196dbeabec42078c2ddb16dcb6ec145a1c610e0842f3" "732b807b0543855541743429c9979ebfb363e27ec91e82f463c91e68c772f6e3" "a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
+ '(custom-enabled-themes (quote (material)))
  '(elpy-rpc-python-command "python3")
  '(elpy-test-django-with-manage t)
  '(package-selected-packages
    (quote
-    (evil-easymotion yaml-mode rainbow-delimiters evil auto-package-update key-chord org-evil elpy material-theme better-defaults fzf web-mode org-bullets linum-relative editorconfig isortify evil-terminal-cursor-changer org ## blacken use-package evil-visual-mark-mode))))
+    (evil-snipe evil-easymotion yaml-mode rainbow-delimiters evil auto-package-update key-chord elpy material-theme better-defaults fzf web-mode linum-relative editorconfig isortify evil-terminal-cursor-changer ## blacken use-package evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -61,20 +62,21 @@
 
 ;(use-package org-evil)
 
-(global-linum-mode t)
-(setq linum-format "%4d ")
+(require 'display-line-numbers)
+(global-display-line-numbers-mode)
+(setq display-line-numbers-type 'relative)
 
 
 (use-package editorconfig
   :config
   (editorconfig-mode 1))
 
-(define-minor-mode blacken-mode
-  "Automatically run black when saving"
-  :lighter " Black"
-  (if blacken-mode
-      (add-hook 'before-save-hook 'elpy-format-code)
-    (remove-hook 'before-save-hook 'elpy-format-code)))
+;(define-minor-mode blacken-mode
+  ;"Automatically run black when saving"
+  ;:lighter " Black"
+  ;(if blacken-mode
+      ;(add-hook 'before-save-hook 'elpy-format-code)
+    ;(remove-hook 'before-save-hook 'elpy-format-code)))
 
 
 (use-package elpy
@@ -123,6 +125,16 @@
 
 ;(use-package elm-mode)
 
-(use-package evil-easymotion
-  :config
-  (evilem-default-keybindings "SPC"))
+;(use-package evil-easymotion
+  ;:config
+  ;(evilem-default-keybindings "SPC"))
+
+(use-package evil-snipe)
+(use-package nim-mode)
+(use-package helm-ag
+ :config
+ (defun ag ()
+   (interactive)
+   (helm-do-ag-project-root)
+   )
+)
